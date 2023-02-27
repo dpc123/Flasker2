@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
@@ -11,6 +11,39 @@ app.config['SECRET_KEY'] = "dpc123"
 class NamerForm(FlaskForm):
 	name = StringField("What's your name?", validators=[DataRequired()])
 	submit = SubmitField("Submit")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -57,6 +90,7 @@ def page_not_found(e):
 
 
 
+
 #create name page
 @app.route('/name',methods=['GET', 'POST'])
 def name():
@@ -66,6 +100,7 @@ def name():
 	if form.validate_on_submit():
 		name = form.name.data
 		form.name.data = ''
+		flash("Form submitted Successfully")
 
 	return render_template("name.html", name=name,form=form)
 
